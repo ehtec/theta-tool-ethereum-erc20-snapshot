@@ -199,17 +199,33 @@ class HttpRequest:
 
         raw_response_str = None
 
-        try:
-            # TODO: verify certificate for Https connections
-            raw_response_str = connect(url=url, data=data, verify=False)
-            raw_response_json = json.loads(raw_response_str)
-            success = True
-        except Exception as e:
-            print("raw_response_str: {0}".format(raw_response_str))
-            Logger.printError('Failed to call API: %s, data: %s, error: %s' % (url, data, e))
-            traceback.print_exc()
-            sys.stdout.flush()
-            pass
+        retries_num = 0
+
+        max_retries = 4
+
+        for i in range(max_retries):
+
+            try:
+                # TODO: verify certificate for Https connections
+                raw_response_str = connect(url=url, data=data, verify=False)
+                raw_response_json = json.loads(raw_response_str)
+                success = True
+                break
+            except Exception as e:
+                print("raw_response_str: {0}".format(raw_response_str))
+                Logger.printError('Failed to call API: %s, data: %s, error: %s' % (url, data, e))
+                traceback.print_exc()
+                sys.stdout.flush()
+
+                if i + 1 < max_retries:
+                    retries_num += 1
+                    print("Retrying...")
+
+                else:
+                    print("EXCEPTION PERSISTED AFTER {0} RETRIES!!!".format(max_retries - 1))
+
+        if retries_num > 0:
+            print("Success after {0} retries.".format(retries_num))
 
         if return_raw_response:
             return raw_response_str

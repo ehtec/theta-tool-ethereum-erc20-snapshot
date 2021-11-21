@@ -14,7 +14,7 @@ BURN_ADDRESS = "0x0000000000000000000000000000000000000000"
 ETH_HEIGHT_STEP = 10000
 
 # BSC block height step
-BSC_HEIGHT_STEP = 10000
+BSC_HEIGHT_STEP = 3000
 
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
