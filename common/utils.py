@@ -1,9 +1,11 @@
+import os.path
 import re
 import sys
 import subprocess
 import time
 import calendar
 from datetime import datetime
+import os
 
 
 def toUnicode(item):
@@ -88,3 +90,7 @@ class ErrorReporter:
     def reportError(error_message):
         printed_error_msg = Logger.printError(error_message)
         # TODO: send out email...
+
+
+def get_project_root():
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
