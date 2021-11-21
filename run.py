@@ -10,10 +10,27 @@ from analyzer.event_analyzer import EthereumEventAnalyzer
 # burn address to be excluded from sanity check
 BURN_ADDRESS = "0x0000000000000000000000000000000000000000"
 
+# ETH block height step
+ETH_HEIGHT_STEP = 10000
+
+# BSC block height step
+BSC_HEIGHT_STEP = 10000
+
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
                        balance_file_path, chain):
     # export_folder = "./data/{0}_events".format(chain.lower())
+
+    # set right height step
+
+    if chain.upper() == "ETH":
+        height_step = ETH_HEIGHT_STEP
+
+    elif chain.upper() == "BSC":
+        height_step = BSC_HEIGHT_STEP
+
+    else:
+        raise ValueError("Invalid chain: {0}".format(chain))
 
     export_folder = os.path.join(get_project_root(), 'data', '{0}_events'.format(chain.lower()))
 
@@ -22,7 +39,7 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
 
     Logger.printInfo('')
     Logger.printInfo('Start exporting Ethereum events...')
-    eee = EthereumEventExtractor(ethereum_rpc_url, smart_contract_address, export_folder)
+    eee = EthereumEventExtractor(ethereum_rpc_url, smart_contract_address, export_folder, height_step=height_step)
     eee.Export(genesis_height, target_height)
     Logger.printInfo('Ethereum events exported.')
     Logger.printInfo('')
