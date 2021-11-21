@@ -10,7 +10,7 @@ import urllib
 import requests
 from common.utils import Logger
 from common.constants import ApiStatus, ApiKey, ApiErrorCode
-from response import HttpSuccess, HttpError
+from common.http.response import HttpSuccess, HttpError
 
 
 class HttpMethod:
