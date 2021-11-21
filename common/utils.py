@@ -43,8 +43,7 @@ class Logger(object):
     def printInfo(msg):
         printed_msg = str(datetime.now()) + '\033[97m [Info] ' + toUnicode(msg) + '\033[0m'
         Logger._writeToLogFile(printed_msg)
-        print
-        printed_msg
+        print printed_msg
         sys.stdout.flush()
         return printed_msg
 
@@ -52,8 +51,7 @@ class Logger(object):
     def printWarning(msg):
         printed_msg = str(datetime.now()) + '\033[93m [Warning] ' + toUnicode(msg) + '\033[0m'
         Logger._writeToLogFile(printed_msg)
-        print
-        printed_msg
+        print printed_msg
         sys.stdout.flush()
         return printed_msg
 
@@ -61,8 +59,7 @@ class Logger(object):
     def printError(msg):
         printed_msg = str(datetime.now()) + '\033[91m [Error] ' + toUnicode(msg) + '\033[0m'
         Logger._writeToLogFile(printed_msg)
-        print
-        printed_msg
+        print printed_msg
         sys.stdout.flush()
         return printed_msg
 
@@ -71,8 +68,7 @@ class Logger(object):
         printed_msg = str(datetime.now()) + '\033[50m [Debug] ' + toUnicode(msg) + '\033[0m'
         Logger._writeToLogFile(printed_msg)
         if Logger.DEBUG_MODE:
-            print
-            printed_msg
+            print printed_msg
             sys.stdout.flush()
         return printed_msg
 
