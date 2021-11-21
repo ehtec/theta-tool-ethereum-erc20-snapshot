@@ -11,10 +11,11 @@ class EthereumEventExtractor:
     FILENAME_FORMAT = '%s_events_%s_to_%s.json'
     FILENAME_REGEX = '(?P<smaddr>[a-fx0-9]+)_events_(?P<from>[0-9]+)_to_(?P<to>[0-9]+)\.json'
 
-    def __init__(self, ethereum_rpc_url, smart_contract_address, export_folder):
+    def __init__(self, ethereum_rpc_url, smart_contract_address, export_folder, height_step=10000):
         self.ethereum_rpc_service = EthereumRpcService(ethereum_rpc_url, smart_contract_address)
         self.smart_contract_address = smart_contract_address
         self.export_folder = export_folder
+        self.height_step = height_step
 
     def Export(self, start_height, end_height):
         Logger.printInfo("Start to extract events from height %s to %s..." % (start_height, end_height))
@@ -27,7 +28,8 @@ class EthereumEventExtractor:
             current_height = start_height - 1
         while current_height < end_height:
             from_height = current_height + 1
-            to_height = min(from_height + EthereumEventExtractor.HEIGHT_STEP - 1, end_height)
+            to_height = min(from_height + self.height_step - 1, end_height)
+            # to_height = min(from_height + EthereumEventExtractor.HEIGHT_STEP - 1, end_height)
             self.export(from_height, to_height)
             current_height = to_height
             Logger.printInfo("Extracted events from height %s to %s" % (from_height, to_height))

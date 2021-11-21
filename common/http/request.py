@@ -71,7 +71,7 @@ class RequestsLib(HttpConnectLib):
     def put(self, url, data, verify):
         return requests.put(url, data, verify).text
 
-    def put(self, url, data, verify):
+    def delete(self, url, data, verify):
         return requests.delete(url, data, verify).text
 
 
@@ -196,12 +196,16 @@ class HttpRequest:
             return None  # not supported
 
         success, raw_response_json = False, None
+
+        raw_response_str = None
+
         try:
             # TODO: verify certificate for Https connections
             raw_response_str = connect(url=url, data=data, verify=False)
             raw_response_json = json.loads(raw_response_str)
             success = True
         except Exception as e:
+            print("raw_response_str: {0}".format(raw_response_str))
             Logger.printError('Failed to call API: %s, data: %s, error: %s' % (url, data, e))
             traceback.print_exc()
             sys.stdout.flush()
