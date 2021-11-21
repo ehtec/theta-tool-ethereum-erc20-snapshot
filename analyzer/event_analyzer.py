@@ -32,7 +32,7 @@ class EthereumEventAnalyzer:
         with open(file_path) as f:
             data = json.load(f)
         for event_json in data:
-            block_height = int(self.getBlockHeight(event_json), 16)
+            block_height = int(self.getBlockHeight(event_json))
             if block_height > target_height:
                 break
 
@@ -65,6 +65,9 @@ class EthereumEventAnalyzer:
 
     def getBlockHeight(self, event_json):
         block_height = event_json.get(ApiKey.BLOCK_NUMBER, -1)
+
+        block_height = int(block_height, 0)
+
         if block_height < 0:
             Logger.printError('Cannot extract block number: %s' % (event_json))
             exit(1)
@@ -107,13 +110,13 @@ class EthereumEventAnalyzer:
 
     def filterOutAddressesWithZeroBalance(self, balance_map):
         filtered_balance_map = {}
-        for (addr, bal) in balance_map.iteritems():
+        for (addr, bal) in balance_map.items():
             if bal != 0:
                 filtered_balance_map[addr] = bal
         return filtered_balance_map
 
     def convertBalanceToString(self, balance_map):
         converted_balance_map = {}
-        for (addr, bal) in balance_map.iteritems():
+        for (addr, bal) in balance_map.items():
             converted_balance_map[addr] = str(bal)
         return converted_balance_map
