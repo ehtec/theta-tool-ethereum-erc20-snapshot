@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-from common.utils import Logger
+from common.utils import Logger, get_project_root
 from common.config_manager import ConfigManager
 from extractor.event_extractor import EthereumEventExtractor
 from extractor.balance_extractor import TokenBalanceExtractor
@@ -13,7 +13,10 @@ BURN_ADDRESS = "0x0000000000000000000000000000000000000000"
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
                        balance_file_path, chain):
-    export_folder = "./data/{0}_events".format(chain.lower())
+    # export_folder = "./data/{0}_events".format(chain.lower())
+
+    export_folder = os.path.join(get_project_root(), 'data', '{0}_events'.format(chain.lower()))
+
     if not os.path.exists(export_folder):
         os.makedirs(export_folder)
 
@@ -50,6 +53,8 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
     #   exit(1)
     # Logger.printInfo('Sanity checks all passed.')
     Logger.printInfo('')
+
+    balance_file_path = os.path.join(get_project_root(), 'output', balance_file_path)
 
     with open(balance_file_path, 'w') as balance_file:
         json.dump(queried_balance_map, balance_file, indent=2)
