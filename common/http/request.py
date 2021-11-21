@@ -115,7 +115,7 @@ class CurlLib(HttpConnectLib):
             except:
                 curl_cmd_str = """curl -X {0} -H "Content-Type: application/json" {1} -d '{2}'""".format(method, url,
                                                                                                          rectified_json_str)
-                curl_cmd = unicode(curl_cmd_str, errors='ignore')
+                # curl_cmd = unicode(curl_cmd_str, errors='ignore')
         else:
             raise Exception('Http method not supported! method: %s' % (method))
 
@@ -202,7 +202,7 @@ class HttpRequest:
             raw_response_json = json.loads(raw_response_str)
             success = True
         except Exception as e:
-            Logger.printError('Failed to call API: %s, data: %s, error: %s' % (url, data, e.message))
+            Logger.printError('Failed to call API: %s, data: %s, error: %s' % (url, data, e))
             traceback.print_exc()
             sys.stdout.flush()
             pass

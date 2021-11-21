@@ -12,8 +12,8 @@ BURN_ADDRESS = "0x0000000000000000000000000000000000000000"
 
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
-                       balance_file_path):
-    export_folder = "./data/events"
+                       balance_file_path, chain):
+    export_folder = "./data/{0}_events".format(chain.lower())
     if not os.path.exists(export_folder):
         os.makedirs(export_folder)
 
@@ -117,6 +117,7 @@ if __name__ == '__main__':
     smart_contract_address = config.smart_contract_address
     expected_total_supply = config.expected_total_supply
     genesis_height = config.genesis_height
+    chain = config.chain
 
     exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply,
-                       genesis_height, target_height, balance_file_path)
+                       genesis_height, target_height, balance_file_path, chain)

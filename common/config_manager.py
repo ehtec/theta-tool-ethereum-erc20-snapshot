@@ -21,6 +21,7 @@ class ConfigKey:
     SMART_CONTRACT_ADDRESS = 'smart_contract_address'
     GENESIS_HEIGHT = 'genesis_height'
     EXPECTED_TOTAL_SUPPLY = 'expected_total_supply'
+    CHAIN = 'chain'
 
 
 class Config:
@@ -36,6 +37,7 @@ class Config:
         self.smart_contract_address = config_json[ConfigKey.SMART_CONTRACT_ADDRESS]
         self.genesis_height = config_json[ConfigKey.GENESIS_HEIGHT]
         self.expected_total_supply = config_json[ConfigKey.EXPECTED_TOTAL_SUPPLY]
+        self.chain = config_json[ConfigKey.CHAIN]
 
 
 class ConfigManager:
