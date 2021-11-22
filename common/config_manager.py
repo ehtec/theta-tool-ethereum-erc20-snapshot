@@ -12,7 +12,7 @@
 
 
 import json
-from utils import Logger
+from .utils import Logger
 import traceback
 
 
