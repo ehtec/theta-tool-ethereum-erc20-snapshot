@@ -1,4 +1,4 @@
-from common.constants import ApiStatus, ApiKey, ApiErrorCode
+from ..constants import ApiStatus, ApiKey, ApiErrorCode
 
 
 class HttpResponse:
