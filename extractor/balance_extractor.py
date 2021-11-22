@@ -1,5 +1,5 @@
-from common.utils import Logger
-from extractor.rpc import EthereumRpcService
+from ..common.utils import Logger
+from .rpc import EthereumRpcService
 
 
 class TokenBalanceExtractor:
