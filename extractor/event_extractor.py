@@ -1,9 +1,9 @@
 import re
 import json
-from extractor.rpc import EthereumRpcService
+from .rpc import EthereumRpcService
 from os import listdir
 from os.path import isfile, join
-from common.utils import Logger
+from ..common.utils import Logger
 
 
 class EthereumEventExtractor:
