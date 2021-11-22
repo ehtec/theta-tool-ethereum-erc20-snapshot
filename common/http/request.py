@@ -207,7 +207,7 @@ class HttpRequest:
 
             try:
                 # TODO: verify certificate for Https connections
-                print("url: {0}, data: {1}".format(url, data))
+                # print("url: {0}, data: {1}".format(url, data))
                 raw_response_str = connect(url=url, data=data, verify=False)
                 raw_response_json = json.loads(raw_response_str)
                 success = True
@@ -235,7 +235,7 @@ class HttpRequest:
             return api_response
 
     def _parseRawResponse(self, success, raw_response_json):
-        print("raw_response_json: {0}".format(raw_response_json))
+        # print("raw_response_json: {0}".format(raw_response_json))
         if not success:
             Logger.printError('Invalid server response! raw_response_json: %s' % (raw_response_json))
             return HttpError(ApiErrorCode.SERVER_CONNECTION_ERROR,
