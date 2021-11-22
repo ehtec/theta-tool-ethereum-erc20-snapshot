@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-from common.utils import Logger, get_project_root
+from .common.utils import Logger, get_project_root
 from common.config_manager import ConfigManager
 from extractor.event_extractor import EthereumEventExtractor
 from extractor.balance_extractor import TokenBalanceExtractor
