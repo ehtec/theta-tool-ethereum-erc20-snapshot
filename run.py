@@ -2,10 +2,10 @@ import os
 import sys
 import json
 from .common.utils import Logger, get_project_root
-from common.config_manager import ConfigManager
-from extractor.event_extractor import EthereumEventExtractor
-from extractor.balance_extractor import TokenBalanceExtractor
-from analyzer.event_analyzer import EthereumEventAnalyzer
+from .common.config_manager import ConfigManager
+from .extractor.event_extractor import EthereumEventExtractor
+from .extractor.balance_extractor import TokenBalanceExtractor
+from .analyzer.event_analyzer import EthereumEventAnalyzer
 
 # burn address to be excluded from sanity check
 BURN_ADDRESS = "0x0000000000000000000000000000000000000000"
