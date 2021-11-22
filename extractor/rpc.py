@@ -1,6 +1,6 @@
-from common.constants import ApiKey, ApiValue
-from common.http.request import HttpRequest
-from common.http.response import HttpSuccess, HttpError
+from ..common.constants import ApiKey, ApiValue
+from ..common.http.request import HttpRequest
+from ..common.http.response import HttpSuccess, HttpError
 
 
 class EthereumRpcService:
