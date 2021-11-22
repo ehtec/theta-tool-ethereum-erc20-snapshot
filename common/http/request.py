@@ -8,9 +8,9 @@ import json
 import subprocess
 import urllib
 import requests
-from common.utils import Logger
-from common.constants import ApiStatus, ApiKey, ApiErrorCode
-from common.http.response import HttpSuccess, HttpError
+from ..utils import Logger
+from ..constants import ApiStatus, ApiKey, ApiErrorCode
+from ..http.response import HttpSuccess, HttpError
 
 
 class HttpMethod:
