@@ -1,5 +1,6 @@
 {
-  "ethereum_rpc_url" : "https://speedy-nodes-nyc.moralis.io/96c7c7a41fa2f0895e6a9eb6/bsc/mainnet/archive",
+  "ethereum_rpc_url" : "https://speedy-nodes-nyc.moralis.io/96c7c7a41fa2f0895e6a9eb6/bsc/mainnet",
+  "ethereum_rpc_url_backup": "https://bsc-dataseed.binance.org",
   "smart_contract_address" : "0x99c6e435ec259a7e8d65e1955c9423db624ba54c",
   "genesis_height" : 6235246,
   "expected_total_supply" : 10000000000000000000000000,

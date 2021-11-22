@@ -42,5 +42,10 @@ class EthereumRpcService:
         }
         self.rpc_idx += 1
         response = self._http_request.post('', params)
-        balance = int(response.body, 16)
+
+        try:
+            balance = int(response.body, 16)
+        except ValueError as e:
+            balance = 0
+            print(e)
         return balance
