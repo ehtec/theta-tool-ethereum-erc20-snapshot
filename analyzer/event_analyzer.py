@@ -2,9 +2,9 @@ import re
 import json
 from os import listdir
 from os.path import isfile
-from common.constants import ApiKey
-from common.utils import Logger
-from extractor.event_extractor import EthereumEventExtractor
+from ..common.constants import ApiKey
+from ..common.utils import Logger
+from ..extractor.event_extractor import EthereumEventExtractor
 
 
 class EthereumEventAnalyzer:
