@@ -16,6 +16,12 @@ ETH_HEIGHT_STEP = 10000
 # BSC block height step
 BSC_HEIGHT_STEP = 500
 
+# polygon height step
+POLYGON_HEIGHT_STEP = 500
+
+# fantom height step
+FANTOM_HEIGHT_STEP = 1000
+
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
                        balance_file_path, chain):
@@ -28,6 +34,12 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
 
     elif chain.upper() == "BSC":
         height_step = BSC_HEIGHT_STEP
+
+    elif chain.upper() == "POLYGON":
+        height_step = POLYGON_HEIGHT_STEP
+
+    elif chain.upper() == "FANTOM":
+        height_step = FANTOM_HEIGHT_STEP
 
     else:
         raise ValueError("Invalid chain: {0}".format(chain))
