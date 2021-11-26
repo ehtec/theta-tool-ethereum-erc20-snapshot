@@ -24,7 +24,7 @@ FANTOM_HEIGHT_STEP = 1000
 
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
-                       balance_file_path, chain):
+                       balance_file_path, chain, retrieve_balances=True):
     # export_folder = "./data/{0}_events".format(chain.lower())
 
     # set right height step
@@ -65,13 +65,19 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
     # with open(balance_file_path + '.analyzed', 'w') as balance_file:
     #  json.dump(analyzed_balance_map, balance_file, indent=2)
 
-    Logger.printInfo(
-        'Start querying the balance of each holder at block height %s, may take a while...' % (target_height))
-    token_holder_addresses = analyzed_balance_map.keys()
-    tbe = TokenBalanceExtractor(ethereum_rpc_url, smart_contract_address)
-    queried_balance_map = tbe.Query(token_holder_addresses, target_height)
-    Logger.printInfo('Token holders balance retrieved.')
-    Logger.printInfo('')
+    if retrieve_balances:
+        Logger.printInfo(
+            'Start querying the balance of each holder at block height %s, may take a while...' % (target_height))
+        token_holder_addresses = analyzed_balance_map.keys()
+        tbe = TokenBalanceExtractor(ethereum_rpc_url, smart_contract_address)
+        queried_balance_map = tbe.Query(token_holder_addresses, target_height)
+        Logger.printInfo('Token holders balance retrieved.')
+        Logger.printInfo('')
+
+    else:
+        token_holder_addresses = list(analyzed_balance_map.keys())
+
+        queried_balance_map = {el: 0.0 for el in token_holder_addresses}
 
     # with open(balance_file_path + '.queried', 'w') as balance_file:
     #  json.dump(queried_balance_map, balance_file, indent=2)
@@ -81,7 +87,7 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
     #   Logger.printError('Sanity checks failed.')
     #   exit(1)
     # Logger.printInfo('Sanity checks all passed.')
-    Logger.printInfo('')
+    # Logger.printInfo('')
 
     balance_file_path = os.path.join(get_project_root(), 'output', balance_file_path)
 
