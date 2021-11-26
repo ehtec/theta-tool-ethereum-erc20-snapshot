@@ -7,6 +7,8 @@ __pycache__
 
 .idea
 
-/output
+output/*
 
 /providers.json
+
+!/output/.keep
