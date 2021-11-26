@@ -1,4 +1,5 @@
 {
+  "ethereum_rpc_url": "",
   "ethereum_rpc_url_backup": "https://bsc-dataseed.binance.org",
   "smart_contract_address" : "0x99c6e435ec259a7e8d65e1955c9423db624ba54c",
   "genesis_height" : 6235246,
