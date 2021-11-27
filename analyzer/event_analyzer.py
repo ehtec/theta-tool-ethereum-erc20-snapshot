@@ -80,8 +80,8 @@ class EthereumEventAnalyzer:
                 # if from_addr not in balance_map.keys():
                 #     balance_map.update({from_addr: 0})
 
-                balance_map[from_addr] = balance_map.get(from_addr, 0)
-                balance_map[to_addr] = balance_map.get(to_addr, 0)
+                # balance_map[from_addr] = balance_map.get(from_addr, 0)
+                # balance_map[to_addr] = balance_map.get(to_addr, 0)
 
                 continue
 
