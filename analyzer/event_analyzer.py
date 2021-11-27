@@ -73,7 +73,14 @@ class EthereumEventAnalyzer:
                 Logger.printError('from_balance < amount. from_addr: %s, to_addr: %s, amount: %s, event: %s' % ( \
                     from_addr, to_addr, amount, event_json))
                 # exit(1)
-                # continue
+
+                if to_addr not in balance_map.keys():
+                    balance_map.update({to_addr: 0})
+
+                if from_addr not in balance_map.keys():
+                    balance_map.update({from_addr: 0})
+
+                continue
 
             if from_addr == EthereumEventAnalyzer.ZERO_ADDR:
                 updated_from_balance = from_balance  # minting token
