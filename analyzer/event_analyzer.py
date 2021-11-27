@@ -135,10 +135,10 @@ class EthereumEventAnalyzer:
         return addr
 
     def extractTransferAmountFromData(self, data):
-        try:
-            amount = int(data, 16)
-        except ValueError:
-            return 0
+        # try:
+        amount = int(data, 16)
+        # except ValueError:
+        #     return 0
         return amount
 
     def filterOutAddressesWithZeroBalance(self, balance_map):
