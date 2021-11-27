@@ -5,6 +5,7 @@ from os.path import isfile
 from ..common.constants import ApiKey
 from ..common.utils import Logger
 from ..extractor.event_extractor import EthereumEventExtractor
+from web3 import Web3
 
 
 class EthereumEventAnalyzer:
@@ -38,10 +39,25 @@ class EthereumEventAnalyzer:
 
             from_addr, to_addr, amount = '', '', 0
             event_topic = self.getEventTopic(event_json)
+
+            a_res = self.analyzeTransferEvent(event_json)
+
             if event_topic == EthereumEventAnalyzer.TRANSFER_TOPIC:
-                from_addr, to_addr, amount = self.analyzeTransferEvent(event_json)
+                from_addr, to_addr, amount = a_res
             elif event_topic == EthereumEventAnalyzer.APPROVAL_TOPIC:
-                from_addr, to_addr = self.analyzeApprovalEvent(event_json)  # approve() transfers ZERO token
+                from_addr, to_addr = a_res  # approve() transfers ZERO token
+            else:
+                if len(a_res) < 2:
+                    continue
+
+                from_addr = a_res[0]
+                to_addr = a_res[1]
+
+                if not Web3.isAddress(from_addr):
+                    continue
+
+                if not Web3.isAddress(to_addr):
+                    continue
 
             if (len(from_addr) == 0) or (len(to_addr) == 0):
                 Logger.printWarning('failed to process event: %s' % (event_json))
