@@ -40,12 +40,10 @@ class EthereumEventAnalyzer:
             from_addr, to_addr, amount = '', '', 0
             event_topic = self.getEventTopic(event_json)
 
-            a_res = self.analyzeTransferEvent(event_json)
-
             if event_topic == EthereumEventAnalyzer.TRANSFER_TOPIC:
-                from_addr, to_addr, amount = a_res
+                from_addr, to_addr, amount = self.analyzeTransferEvent(event_json)
             elif event_topic == EthereumEventAnalyzer.APPROVAL_TOPIC:
-                from_addr, to_addr = a_res  # approve() transfers ZERO token
+                from_addr, to_addr = self.analyzeApprovalEvent(event_json)  # approve() transfers ZERO token
             # else:
             #     if len(a_res) < 2:
             #         # if len(a_res) == 0:
