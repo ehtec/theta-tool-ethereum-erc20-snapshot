@@ -48,11 +48,12 @@ class EthereumEventAnalyzer:
             #     from_addr, to_addr = a_res  # approve() transfers ZERO token
             else:
                 if len(a_res) < 2:
-                    if len(a_res) == 0:
-                        continue
-
-                    a_res = to_addr
-                    from_addr = EthereumEventAnalyzer.ZERO_ADDR
+                    # if len(a_res) == 0:
+                    #     continue
+                    #
+                    # a_res = to_addr
+                    # from_addr = EthereumEventAnalyzer.ZERO_ADDR
+                    continue
 
                 from_addr = a_res[0]
                 to_addr = a_res[1]
@@ -72,7 +73,7 @@ class EthereumEventAnalyzer:
                 Logger.printError('from_balance < amount. from_addr: %s, to_addr: %s, amount: %s, event: %s' % ( \
                     from_addr, to_addr, amount, event_json))
                 # exit(1)
-                continue
+                # continue
 
             if from_addr == EthereumEventAnalyzer.ZERO_ADDR:
                 updated_from_balance = from_balance  # minting token
