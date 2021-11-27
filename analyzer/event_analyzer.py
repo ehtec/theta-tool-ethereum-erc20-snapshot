@@ -44,8 +44,8 @@ class EthereumEventAnalyzer:
 
             if event_topic == EthereumEventAnalyzer.TRANSFER_TOPIC:
                 from_addr, to_addr, amount = a_res
-            elif event_topic == EthereumEventAnalyzer.APPROVAL_TOPIC:
-                from_addr, to_addr = a_res  # approve() transfers ZERO token
+            # elif event_topic == EthereumEventAnalyzer.APPROVAL_TOPIC:
+            #     from_addr, to_addr = a_res  # approve() transfers ZERO token
             else:
                 if len(a_res) < 2:
                     continue
