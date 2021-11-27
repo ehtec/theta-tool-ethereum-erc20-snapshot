@@ -48,7 +48,11 @@ class EthereumEventAnalyzer:
             #     from_addr, to_addr = a_res  # approve() transfers ZERO token
             else:
                 if len(a_res) < 2:
-                    continue
+                    if len(a_res) == 0:
+                        continue
+
+                    a_res = to_addr
+                    from_addr = EthereumEventAnalyzer.ZERO_ADDR
 
                 from_addr = a_res[0]
                 to_addr = a_res[1]
