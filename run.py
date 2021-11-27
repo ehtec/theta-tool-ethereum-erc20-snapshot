@@ -59,7 +59,7 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
     Logger.printInfo('Start extracting token holders...')
     eea = EthereumEventAnalyzer()
     analyzed_balance_map = eea.Analyze(export_folder, target_height)
-    Logger.printInfo('Token holders extracted.')
+    Logger.printInfo('{0} Token holders extracted.'.format(len(analyzed_balance_map)))
     Logger.printInfo('')
 
     # with open(balance_file_path + '.analyzed', 'w') as balance_file:
