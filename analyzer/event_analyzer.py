@@ -24,7 +24,7 @@ class EthereumEventAnalyzer:
             if match_res:
                 file_path = event_file_folder + '/' + filename
                 self.analyzeFile(file_path, target_height, balance_map)
-        balance_map = self.filterOutAddressesWithZeroBalance(balance_map)
+        # balance_map = self.filterOutAddressesWithZeroBalance(balance_map)
         balance_map = self.convertBalanceToString(balance_map)
         return balance_map
 
