@@ -13,8 +13,9 @@ class EthereumEventAnalyzer:
     TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
     APPROVAL_TOPIC = '0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925'
 
-    def __init__(self):
-        pass
+    def __init__(self, filter_zero_addresses=True):
+
+        self.filter_zero_addresses = filter_zero_addresses
 
     def Analyze(self, event_file_folder, target_height):
         balance_map = {}
@@ -25,7 +26,8 @@ class EthereumEventAnalyzer:
             if match_res:
                 file_path = event_file_folder + '/' + filename
                 self.analyzeFile(file_path, target_height, balance_map)
-        balance_map = self.filterOutAddressesWithZeroBalance(balance_map)
+        if self.filter_zero_addresses:
+            balance_map = self.filterOutAddressesWithZeroBalance(balance_map)
         balance_map = self.convertBalanceToString(balance_map)
         return balance_map
 
