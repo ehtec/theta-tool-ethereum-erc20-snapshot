@@ -1,7 +1,6 @@
 # Author: Jieyi Long (jieyi@sliver.tv)
 # Date: Apr 2016
-
-
+import time
 import traceback
 import sys
 import json
@@ -11,6 +10,10 @@ import requests
 from ..utils import Logger
 from ..constants import ApiStatus, ApiKey, ApiErrorCode
 from ..http.response import HttpSuccess, HttpError
+
+
+# sleep before each request to prevent interfering with other Moralis applications
+MORALIS_SLEEP = 0.05
 
 
 class HttpMethod:
@@ -204,6 +207,8 @@ class HttpRequest:
         max_retries = 4
 
         for i in range(max_retries):
+
+            time.sleep(MORALIS_SLEEP)
 
             try:
                 # TODO: verify certificate for Https connections
