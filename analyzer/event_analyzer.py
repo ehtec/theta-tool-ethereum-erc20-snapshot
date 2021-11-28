@@ -74,11 +74,12 @@ class EthereumEventAnalyzer:
                     from_addr, to_addr, amount, event_json))
                 # exit(1)
 
-                # if to_addr not in balance_map.keys():
-                #     balance_map.update({to_addr: 0})
-                #
-                # if from_addr not in balance_map.keys():
-                #     balance_map.update({from_addr: 0})
+                if not self.filter_zero_addresses:
+                    if to_addr not in balance_map.keys():
+                        balance_map.update({to_addr: 0})
+
+                    if from_addr not in balance_map.keys():
+                        balance_map.update({from_addr: 0})
 
                 # balance_map[from_addr] = balance_map.get(from_addr, 0)
                 # balance_map[to_addr] = balance_map.get(to_addr, 0)
