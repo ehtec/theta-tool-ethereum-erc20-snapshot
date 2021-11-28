@@ -24,7 +24,7 @@ FANTOM_HEIGHT_STEP = 1000
 
 
 def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_supply, genesis_height, target_height,
-                       balance_file_path, chain, retrieve_balances=True):
+                       balance_file_path, chain, retrieve_balances=True, filter_zero_addresses=True):
     # export_folder = "./data/{0}_events".format(chain.lower())
 
     # set right height step
@@ -57,7 +57,7 @@ def exportTokenBalance(ethereum_rpc_url, smart_contract_address, expected_total_
     Logger.printInfo('')
 
     Logger.printInfo('Start extracting token holders...')
-    eea = EthereumEventAnalyzer()
+    eea = EthereumEventAnalyzer(filter_zero_addresses=filter_zero_addresses)
     analyzed_balance_map = eea.Analyze(export_folder, target_height)
     Logger.printInfo('{0} Token holders extracted.'.format(len(analyzed_balance_map)))
     Logger.printInfo('')
